@@ -21,5 +21,6 @@ import factura.views
 urlpatterns = [
     path('', factura.views.homepage),
     path('admin/', admin.site.urls),
-    path('factura/', factura.views.factura)
+    path('factura/', factura.views.factura),
+    path('detalle/<int:pk>/', factura.views.detalle),
 ]

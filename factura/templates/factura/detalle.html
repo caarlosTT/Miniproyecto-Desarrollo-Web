@@ -5,13 +5,12 @@
 {% block hero %}
     <div class="container hero pt-2">
       <div class="pt-2 px-4 mx-4 my-4 py-4 text-center legend">
-        <h1 class="display-4 fw-bold">FACTURAS</h1>
+        <h1 class="display-4 fw-bold">DETALLE FACTURA</h1>
       </div>
     </div>
 {% endblock hero %}
 
 <html>
-    {% for factura in facturas %}
     <div class="container">
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
@@ -41,6 +40,44 @@
                 <th>Dirección del cliente</th>
                 <td>{{ factura.cliente_direccion }}</td>
             </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Contenido</th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Producto</th>
+                <th>Precio unitario</th>
+                <th>Unidades</th>
+                <th>Precio real</th>
+            </tr>
+            {% for fila in factura.lineas %}
+                    <tr>
+                        <td>{{ fila.nombre_producto }}</td>
+                        <td>{{ fila.precio_unitario }}</td>
+                        <td>{{ fila.unidades }}</td>
+                        <td>{{ fila.precio_real }}</td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <th>Resultado</th>
+                <td></td>
+            </thead>
+            <tbody>
             <tr>
                 <th>Importe total</th>
                 <td>{{ factura.total }}</td>
@@ -50,14 +87,7 @@
                 <td>{{ factura.total_iva }}</td>
             </tr>
             </tbody>
-            <tfoot class="table-dark">
-                <tr>
-                    <th><a href="/detalle/{{ factura.id }}" class="nav-link px-2">Detalle</a></th>
-                    <td></td>
-                </tr>
-            </tfoot>
         </table>
     </div>
-    {% endfor %}
 </html>
 {% endblock content %}
